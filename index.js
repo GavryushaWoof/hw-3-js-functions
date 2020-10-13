@@ -121,6 +121,22 @@ console.log(sum(1, 3, 5, 7));
 
 console.log("---------");
 
+
+//10) Write a polyfill for a .bind() function and save it in `Function.prototype.myBind()`. `myBind()` should work in an exact same way as the usual bind() - take context as a first parameter and the list of arguments separated by comma.
+Function.prototype.myBind = function (oThis) {
+    var func = this;
+    var args = [].slice.call(arguments, 1);
+    return function () {
+        return func.apply(oThis, args.concat([].slice.call(arguments)));
+    }
+};
+
+function addPropToNumber(number) { return this.prop + number; }
+var bound = addPropToNumber.myBind({ prop: 9 });
+console.log(bound(1));
+
+console.log("---------");
+
 //9) Write function `countDown`. Function expects number and logs values one by one till zero with one second delay.
 function countDown(num) {
     for (var count = 1000; num >= 0; num--, count += 1000) {
@@ -130,7 +146,3 @@ function countDown(num) {
     }
 }
 countDown(3);
-
-console.log("---------");
-
-//9) Write function `countDown`. Function expects number and logs values one by one till zero with one second delay.
