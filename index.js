@@ -60,3 +60,77 @@ console.log(mirrorStr(" A fun little challenge! "));
 console.log("---------");
 
 //5) Write a function stringExpansion
+function stringExpansion(str) {
+    if (str.match(/^[0-9]+$/g)) {
+        str = "";
+        return str;
+    }
+    return str.replace(/([0-9])*?([a-zA-Z])/g, function (_, num, chr) {
+        var subChr = chr;
+        for (var index = num - 1; index > 0; index--) {
+            chr += subChr;
+        }
+        return chr;
+    });
+}
+console.log(stringExpansion('3D2a5d2f'));
+console.log(stringExpansion('3d332f2a'));
+console.log(stringExpansion('abcde'));
+console.log(stringExpansion('232132'));
+console.log(stringExpansion(''));
+
+console.log("---------");
+
+//6) Write `largest` and `smallest` functions that returns the largest and smallest number passed like a argument.
+function largest() {
+    return Math.max.apply(Math, arguments)
+}
+function smallest() {
+    return Math.min.apply(Math, arguments)
+}
+console.log(largest(2, 0.1, -5, 100, 3));
+console.log(smallest(2, 0.1, -5, 100, 3));
+
+console.log("---------");
+
+//7) Write function `transform` that will transform array of numbers to array of functions that will return value from a base array.
+function transform(array) {
+    var arrayNew = [];
+    for (var index = 0; index < array.length; index++) {
+        arrayNew[index] = forNew.bind(array, index)
+        function forNew(index) {
+            return array[index]
+        }
+
+    }
+    return arrayNew
+}
+var baseArray = [10, 20, 30, 40, 50];
+var newArray = transform(baseArray);
+console.log(newArray[3]());
+console.log(newArray[4]());
+
+console.log("---------");
+
+//8) Write function `sum`. Function expects arbitrary number of digit arguments and returns compound value of them.
+function sum() {
+    return (arguments.length === 0) ? 0 : arguments[0] + sum.apply(null, [].slice.call(arguments, 1));
+
+}
+console.log(sum(1, 3, 5, 7));
+
+console.log("---------");
+
+//9) Write function `countDown`. Function expects number and logs values one by one till zero with one second delay.
+function countDown(num) {
+    for (var count = 1000; num >= 0; num--, count += 1000) {
+        setTimeout(function (num) {
+            console.log(num);
+        }.bind(null, num), (count));
+    }
+}
+countDown(3);
+
+console.log("---------");
+
+//9) Write function `countDown`. Function expects number and logs values one by one till zero with one second delay.
