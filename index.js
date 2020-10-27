@@ -83,10 +83,10 @@ console.log("---------");
 
 //6) Write `largest` and `smallest` functions that returns the largest and smallest number passed like a argument.
 function largest() {
-    return Math.max.apply(Math, arguments)
+    return Math.max.apply(Math, arguments);
 }
 function smallest() {
-    return Math.min.apply(Math, arguments)
+    return Math.min.apply(Math, arguments);
 }
 console.log(largest(2, 0.1, -5, 100, 3));
 console.log(smallest(2, 0.1, -5, 100, 3));
@@ -99,11 +99,10 @@ function transform(array) {
     for (var index = 0; index < array.length; index++) {
         arrayNew[index] = forNew.bind(array, index)
         function forNew(index) {
-            return array[index]
+            return array[index];
         }
-
     }
-    return arrayNew
+    return arrayNew;
 }
 var baseArray = [10, 20, 30, 40, 50];
 var newArray = transform(baseArray);
@@ -115,7 +114,6 @@ console.log("---------");
 //8) Write function `sum`. Function expects arbitrary number of digit arguments and returns compound value of them.
 function sum() {
     return (arguments.length === 0) ? 0 : arguments[0] + sum.apply(null, [].slice.call(arguments, 1));
-
 }
 console.log(sum(1, 3, 5, 7));
 
