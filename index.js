@@ -1,11 +1,18 @@
+Array.prototype.myMap = function (callback) {
+    var newArray = [];
+    for (var i = 0; i < this.length; i++) {
+        newArray.push(callback(this[i]));
+    }
+    return newArray;
+}
 //1) Write a function splitAndMerge
 function splitAndMerge(str, sp) {
     return str
         .split(" ")
-        .map(function (word) {
+        .myMap(function (word) {
             return word
                 .split("")
-                .join(sp)
+                .join(sp);
         })
         .join(" ");
 }
@@ -16,7 +23,7 @@ console.log("---------");
 
 //2) Write a function convert
 function convert(obj) {
-    return Object.keys(obj).map(function (key) {
+    return Object.keys(obj).myMap(function (key) {
         return [
             key, obj[key]
         ];
@@ -42,7 +49,7 @@ console.log("---------");
 function mirrorStr(str) {
     return str
         .split(" ")
-        .map(function (word) {
+        .myMap(function (word) {
             var letters = word.split("");
             var lastIndex = letters.length - 1;
             for (var i = 0; i <= (letters.length / 2 - 1); i++) {
@@ -144,3 +151,6 @@ function countDown(num) {
     }
 }
 countDown(3);
+
+
+
